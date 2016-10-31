@@ -31,14 +31,21 @@ int main() {
 				s[++top]=P(j,d[i][j]);
 			}
 			else if(d[i][j]<s[top].h){
-				int k=s[top].h*(j-s[top].p);
-				if(ans<k)ans=k;
-				top--;
+				while(d[i][j]<s[top].h){
+				    int k=s[top].h*(j-s[top].p);
+				    if(ans<k)ans=k;
+				    top--;
+				    if(s[top].h<d[i][j])
+				        s[++top]=P(j,d[i][j]);
+				}
 			}
 		}
 	}
 	
 	printf("%d\n",ans);
 	
+	return 0;
+}
+
 	return 0;
 }
