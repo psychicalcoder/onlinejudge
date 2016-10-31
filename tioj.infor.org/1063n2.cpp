@@ -27,17 +27,13 @@ int main() {
 		s[0] = P(0,0);
 		int top = 0;
 		for(int j=1;j<=n+1;j++){
+			while(d[i][j]<s[top].h){
+				int k=s[top].h*(j-s[top].p);
+				if(ans<k)ans=k;
+				top--;
+			}
 			if(d[i][j]>s[top].h){
 				s[++top]=P(j,d[i][j]);
-			}
-			else if(d[i][j]<s[top].h){
-				while(d[i][j]<s[top].h){
-				    int k=s[top].h*(j-s[top].p);
-				    if(ans<k)ans=k;
-				    top--;
-				    if(s[top].h<d[i][j])
-				        s[++top]=P(j,d[i][j]);
-				}
 			}
 		}
 	}
