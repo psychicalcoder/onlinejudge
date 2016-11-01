@@ -8,14 +8,14 @@ struct P {
 	P(int x, int y) {
 		p=x,h=y;
 	}
-} s[205];
+};
 
 int d[205][205];
 
 int main() {
 	int m,n,t;
-	memset(d,0,sizeof(d));
 	scanf("%d%d",&m,&n);
+	memset(d,0,sizeof(d));
 	for(int i=1;i<=m;i++){
 		for(int j=1;j<=n;j++){
 			scanf("%d",&t);
@@ -24,6 +24,7 @@ int main() {
 	}
 	int ans = 0;
 	for(int i=1;i<=m;i++){
+		P s[205];
 		s[0] = P(0,0);
 		int top = 0;
 		for(int j=1;j<=n+1;j++){
@@ -33,12 +34,14 @@ int main() {
 				top--;
 			}
 			if(d[i][j]>s[top].h){
-				s[++top]=P(j,d[i][j]);
-			}
-		}
+			    for(int z=s[top].h+1;z<=d[i][j];z++)
+				    s[++top]=P(j,z);
+		    }
+	    }
 	}
-	
 	printf("%d\n",ans);
-	
+	return 0;
+}
+
 	return 0;
 }
